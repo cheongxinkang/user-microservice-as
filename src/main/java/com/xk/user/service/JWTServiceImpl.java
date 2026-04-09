@@ -25,7 +25,7 @@ public class JWTServiceImpl implements JWTService{
     private String privateRSAKey;
     @Value("security.rsa.public")
     private String publicRSAKey;
-    @Value("security.rsa.keyId")
+    @Value("security.rsa.key-id")
     private String keyId;
 
 
@@ -89,7 +89,7 @@ public class JWTServiceImpl implements JWTService{
         return new KeyPair(publicKey, privateKey);
     }
 
-    private static KeyPair generateRsaKey() {
+    public static KeyPair generateRsaKey() {
         try {
             KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("RSA");
             keyPairGenerator.initialize(2048);
