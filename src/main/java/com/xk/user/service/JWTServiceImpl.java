@@ -21,11 +21,11 @@ import java.util.Date;
 @Service
 public class JWTServiceImpl implements JWTService{
 
-    @Value("security.rsa.private")
+    @Value("${rsa.private}")
     private String privateRSAKey;
-    @Value("security.rsa.public")
+    @Value("${rsa.public}")
     private String publicRSAKey;
-    @Value("security.rsa.key-id")
+    @Value("${rsa.key-id}")
     private String keyId;
 
 

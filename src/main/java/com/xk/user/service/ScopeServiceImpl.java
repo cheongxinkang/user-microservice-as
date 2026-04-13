@@ -12,7 +12,7 @@ public class ScopeServiceImpl implements ScopeService {
             return "achievement_system:write";
         }
 
-        if ("user".equals(userType)) {
+        if ("cultivator".equals(userType)) {
             return "achievement_system:read";
         }
 
