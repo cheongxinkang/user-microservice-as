@@ -25,7 +25,7 @@ public class SecurityConfiguration {
             .cors(AbstractHttpConfigurer::disable)
             .authorizeHttpRequests(auth ->
                 auth
-                    .requestMatchers("/users/register", "/users/token").permitAll()
+                    .requestMatchers("/users/register", "/users/token", "/users/me").permitAll()
                     .anyRequest().authenticated()
             )
             .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

@@ -12,4 +12,6 @@ public interface UserService {
 
     boolean validateUser(String username, String password);
 
+    Optional<UserDTO> findById(String id);
+
 }

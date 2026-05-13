@@ -48,4 +48,10 @@ public class UserServiceImpl implements UserService {
             .orElse(false);
     }
 
+    @Override
+    public Optional<UserDTO> findById(String id) {
+        return userRepository.findById(UUID.fromString(id))
+                .map(UserConverter::fromUserEntity);
+    }
+
 }

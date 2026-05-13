@@ -3,6 +3,7 @@ package com.xk.user.service;
 import com.nimbusds.jose.JWSAlgorithm;
 import com.nimbusds.jose.JWSHeader;
 import com.nimbusds.jose.crypto.RSASSASigner;
+import com.nimbusds.jose.crypto.RSASSAVerifier;
 import com.nimbusds.jwt.JWTClaimsSet;
 import com.nimbusds.jwt.SignedJWT;
 import com.xk.user.dto.TokenRequest;
@@ -57,6 +58,20 @@ public class JWTServiceImpl implements JWTService{
         } catch (Exception ex) {
             throw new RuntimeException("Error creating token", ex);
         }
+    }
+
+    @Override
+    public String getUserIdFromToken(String token) {
+        try {
+            SignedJWT signedJWT = SignedJWT.parse(token);
+            RSASSAVerifier verifier = new RSASSAVerifier((RSAPublicKey) loadRsaKey().getPublic());
+            if (signedJWT.verify(verifier)) {
+                return signedJWT.getJWTClaimsSet().getSubject();
+            }
+        } catch (Exception e) {
+            // Log or handle validation failure
+        }
+        return null;
     }
 
     private KeyPair loadRsaKey() {
